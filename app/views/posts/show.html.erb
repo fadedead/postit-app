@@ -1,18 +1,11 @@
 <p>
-<% @post.categories.each do |category|%>
-        <span class='badge'><%= category.name %></span>
-<% end %>
+<%= render @post.categories%>
 </p>
-<p class='lead'><%= @post.title%></p>
+<%= render 'shared/content_title', title: @post.title %>
 <hr/>
 <p><%= @post.description%></p>
 <hr/>
-<p>
-  <small> 
-  <span class='quiet'>Created by</span>
-  <%= @post.user.username %>
-  at <%= @post.created_at %> </small>
-</p>
+<%= render "shared/created_by_at", username: @post.user.username, created_at: @post.created_at%>
 <p>
   <small>
     <%= @post.comments.count %> Comments

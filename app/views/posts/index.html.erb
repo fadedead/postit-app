@@ -1,22 +1,12 @@
-<p class='lead'>Posts<hr/></p>
+<%= render 'shared/content_title', title: "All Posts" %>
 
 <% @posts.each do |post| %>
   <div class='row'>
     <div class='span8 well'>
-      <% post.categories.each do |category|%>
-        <span class='badge'><%= category.name %></span>
-      <% end %>
+      <%= render post.categories %>
       <h4><%= link_to post.title, post.url %></h4>
       <p><%= post.description %></p>
-      <p>
-        <span class= "quiet">
-          Posted by
-        </span> 
-        <%= post.user.username %> 
-        <small>
-          at <%= post.created_at %>
-        </small> 
-      </p>
+      <%= render "shared/created_by_at", username: post.user.username, created_at: post.created_at%>
       <small><span><%= link_to "#{post.comments.count} Comments", post_path(post.id) %></span></small>
     </div>
   </div>
