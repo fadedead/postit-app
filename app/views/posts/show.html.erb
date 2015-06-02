@@ -1,3 +1,23 @@
-<p>You are viewing <%= @post.title%></p>
-
-<%= link_to 'go back to all posts', posts_path%>
+<p>
+<% @post.categories.each do |category|%>
+        <span class='badge'><%= category.name %></span>
+<% end %>
+</p>
+<p class='lead'><%= @post.title%></p>
+<hr/>
+<p><%= @post.description%></p>
+<hr/>
+<p>
+  <small> 
+  <span class='quiet'>Created by</span>
+  <%= @post.user.username %>
+  at <%= @post.created_at %> </small>
+</p>
+<p>
+  <small>
+    <%= @post.comments.count %> Comments
+  </small>
+  <% @post.comments.each do |comment|%>
+    <p><%= comment.body %></p>
+  <% end %>
+</p>
